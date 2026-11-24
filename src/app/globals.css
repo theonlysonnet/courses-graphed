@@ -1,0 +1,312 @@
+@import "tailwindcss";
+@import "@xyflow/react/dist/style.css";
+
+:root {
+  color-scheme: light dark;
+
+  /* Raw light/dark palette tokens (UW-Madison Badger Cardinal + crisp surfaces) */
+  --bg-light: #f7f7f8;
+  --bg-dark: #0d1016;
+  --surface-light: #ffffff;
+  --surface-dark: #151922;
+  --surface-muted-light: #eef0f3;
+  --surface-muted-dark: #1d2330;
+  --border-light: #d7dce3;
+  --border-dark: #2c3445;
+
+  --text-light: #14171f;
+  --text-dark: #eef2f8;
+  --text-muted-light: #4e5668;
+  --text-muted-dark: #9aa5b8;
+
+  --accent-light: #c5050c;
+  --accent-dark: #f87171;
+  --accent-contrast-light: #ffffff;
+  --accent-contrast-dark: #140506;
+  --accent-soft-light: #fee2e2;
+  --accent-soft-dark: #3b1418;
+
+  --focus-ring-light: #c5050c;
+  --focus-ring-dark: #fb7185;
+
+  --scrollbar-track-light: #e7e9ee;
+  --scrollbar-track-dark: #181d27;
+  --scrollbar-thumb-light: #7c8496;
+  --scrollbar-thumb-dark: #68738a;
+
+  /* Status tokens */
+  --ok-light: #15803d;
+  --ok-dark: #4ade80;
+  --ok-bg-light: #dcfce7;
+  --ok-bg-dark: #113221;
+
+  --prog-light: #0369a1;
+  --prog-dark: #38bdf8;
+  --prog-bg-light: #e0f2fe;
+  --prog-bg-dark: #0f293d;
+
+  --warn-light: #b45309;
+  --warn-dark: #fbbf24;
+  --warn-bg-light: #fef3c7;
+  --warn-bg-dark: #38250b;
+
+  /* Resolved semantic variables with @media fallback for pre-light-dark() browsers */
+  --bg: var(--bg-light);
+  --surface: var(--surface-light);
+  --surface-muted: var(--surface-muted-light);
+  --border: var(--border-light);
+  --text: var(--text-light);
+  --text-muted: var(--text-muted-light);
+  --accent: var(--accent-light);
+  --accent-contrast: var(--accent-contrast-light);
+  --accent-soft: var(--accent-soft-light);
+  --focus-ring: var(--focus-ring-light);
+  --scrollbar-track: var(--scrollbar-track-light);
+  --scrollbar-thumb: var(--scrollbar-thumb-light);
+  --ok: var(--ok-light);
+  --ok-bg: var(--ok-bg-light);
+  --prog: var(--prog-light);
+  --prog-bg: var(--prog-bg-light);
+  --warn: var(--warn-light);
+  --warn-bg: var(--warn-bg-light);
+
+  @media (prefers-color-scheme: dark) {
+    --bg: var(--bg-dark);
+    --surface: var(--surface-dark);
+    --surface-muted: var(--surface-muted-dark);
+    --border: var(--border-dark);
+    --text: var(--text-dark);
+    --text-muted: var(--text-muted-dark);
+    --accent: var(--accent-dark);
+    --accent-contrast: var(--accent-contrast-dark);
+    --accent-soft: var(--accent-soft-dark);
+    --focus-ring: var(--focus-ring-dark);
+    --scrollbar-track: var(--scrollbar-track-dark);
+    --scrollbar-thumb: var(--scrollbar-thumb-dark);
+    --ok: var(--ok-dark);
+    --ok-bg: var(--ok-bg-dark);
+    --prog: var(--prog-dark);
+    --prog-bg: var(--prog-bg-dark);
+    --warn: var(--warn-dark);
+    --warn-bg: var(--warn-bg-dark);
+  }
+
+  @supports (color: light-dark(white, black)) {
+    --bg: light-dark(var(--bg-light), var(--bg-dark));
+    --surface: light-dark(var(--surface-light), var(--surface-dark));
+    --surface-muted: light-dark(var(--surface-muted-light), var(--surface-muted-dark));
+    --border: light-dark(var(--border-light), var(--border-dark));
+    --text: light-dark(var(--text-light), var(--text-dark));
+    --text-muted: light-dark(var(--text-muted-light), var(--text-muted-dark));
+    --accent: light-dark(var(--accent-light), var(--accent-dark));
+    --accent-contrast: light-dark(var(--accent-contrast-light), var(--accent-contrast-dark));
+    --accent-soft: light-dark(var(--accent-soft-light), var(--accent-soft-dark));
+    --focus-ring: light-dark(var(--focus-ring-light), var(--focus-ring-dark));
+    --scrollbar-track: light-dark(var(--scrollbar-track-light), var(--scrollbar-track-dark));
+    --scrollbar-thumb: light-dark(var(--scrollbar-thumb-light), var(--scrollbar-thumb-dark));
+    --ok: light-dark(var(--ok-light), var(--ok-dark));
+    --ok-bg: light-dark(var(--ok-bg-light), var(--ok-bg-dark));
+    --prog: light-dark(var(--prog-light), var(--prog-dark));
+    --prog-bg: light-dark(var(--prog-bg-light), var(--prog-bg-dark));
+    --warn: light-dark(var(--warn-light), var(--warn-dark));
+    --warn-bg: light-dark(var(--warn-bg-light), var(--warn-bg-dark));
+  }
+
+  accent-color: var(--accent);
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+/* Fallback for pre-light-dark browsers when manual theme override is active */
+@supports not (color: light-dark(white, black)) {
+  :root[data-theme="light"] {
+    --bg: var(--bg-light);
+    --surface: var(--surface-light);
+    --surface-muted: var(--surface-muted-light);
+    --border: var(--border-light);
+    --text: var(--text-light);
+    --text-muted: var(--text-muted-light);
+    --accent: var(--accent-light);
+    --accent-contrast: var(--accent-contrast-light);
+    --accent-soft: var(--accent-soft-light);
+    --focus-ring: var(--focus-ring-light);
+    --ok: var(--ok-light);
+    --ok-bg: var(--ok-bg-light);
+    --prog: var(--prog-light);
+    --prog-bg: var(--prog-bg-light);
+    --warn: var(--warn-light);
+    --warn-bg: var(--warn-bg-light);
+  }
+  :root[data-theme="dark"] {
+    --bg: var(--bg-dark);
+    --surface: var(--surface-dark);
+    --surface-muted: var(--surface-muted-dark);
+    --border: var(--border-dark);
+    --text: var(--text-dark);
+    --text-muted: var(--text-muted-dark);
+    --accent: var(--accent-dark);
+    --accent-contrast: var(--accent-contrast-dark);
+    --accent-soft: var(--accent-soft-dark);
+    --focus-ring: var(--focus-ring-dark);
+    --ok: var(--ok-dark);
+    --ok-bg: var(--ok-bg-dark);
+    --prog: var(--prog-dark);
+    --prog-bg: var(--prog-bg-dark);
+    --warn: var(--warn-dark);
+    --warn-bg: var(--warn-bg-dark);
+  }
+}
+
+@supports not (scrollbar-color: auto) {
+  .scroller {
+    scrollbar-width: auto;
+  }
+  .scroller::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  .scroller::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+  }
+  .scroller::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+  }
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+}
+
+/* Visually hidden utility keeping skip links visible on focus */
+.visually-hidden:where(:not(:focus-within, :active)) {
+  position: absolute !important;
+  clip-path: inset(50%) !important;
+  overflow: hidden !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  white-space: nowrap !important;
+}
+
+.skip-link:focus {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  padding: 0.5rem 0.9rem;
+  border-radius: 0.5rem;
+  background: var(--accent);
+  color: var(--accent-contrast);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* High contrast focus indicators */
+:where(a:any-link, button, input, select, summary, [tabindex="0"]):focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+/* Minimum target sizing for interactive controls */
+button,
+[role="tab"] {
+  min-height: 32px;
+}
+
+/* Accessible horizontal single-row tablist */
+.app-tablist {
+  display: flex;
+  overflow-x: auto;
+  gap: 0.25rem;
+  border-block-end: 1px solid var(--border);
+  scrollbar-width: thin;
+}
+
+.app-tab {
+  position: relative;
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.65rem 0.95rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.app-tab:hover {
+  color: var(--text);
+}
+
+.app-tab[aria-selected="true"] {
+  color: var(--accent);
+}
+
+.app-tab[aria-selected="true"]::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  border-block-end: 3px solid var(--accent);
+}
+
+/* Native <dialog> modal rules (never set display unconditionally on dialog) */
+dialog.help-dialog[open] {
+  margin: auto;
+  max-width: min(44rem, calc(100vw - 2rem));
+  max-height: min(86vh, 48rem);
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 0.85rem;
+  background: var(--surface);
+  color: var(--text);
+  padding: 0;
+  box-shadow: 0 24px 64px rgb(0 0 0 / 0.35);
+}
+
+dialog:modal {
+  overscroll-behavior: contain;
+}
+
+dialog::backdrop {
+  background: rgb(10 12 18 / 0.58);
+  backdrop-filter: blur(3px);
+  overflow: hidden;
+  overscroll-behavior: contain;
+}
+
+/* React Flow theme integration */
+.react-flow__controls button {
+  background-color: var(--surface) !important;
+  color: var(--text) !important;
+  border-color: var(--border) !important;
+}
+
+.react-flow__controls button:hover {
+  background-color: var(--surface-muted) !important;
+}
+
+.react-flow__minimap {
+  background-color: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 0.5rem;
+}
+
+.react-flow__attribution {
+  background: transparent !important;
+  color: var(--text-muted) !important;
+}
